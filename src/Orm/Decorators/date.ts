@@ -56,9 +56,9 @@ function prepareDateColumn(value: any, attributeName: string, modelInstance: Luc
  */
 function consumeDateColumn(value: any, attributeName: string, modelInstance: LucidRow) {
   /**
-   * Bypass null columns
+   * Bypass null columns and already parsed DateTimes
    */
-  if (!value) {
+  if (!value || value.constructor?.name === 'DateTime') {
     return value
   }
 
