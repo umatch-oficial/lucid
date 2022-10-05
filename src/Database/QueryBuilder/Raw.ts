@@ -99,7 +99,10 @@ export class RawQueryBuilder implements RawQueryBuilderContract {
    * Executes the query
    */
   public async exec(): Promise<any> {
-    return new QueryRunner(this.client, this.debugQueries, this.getQueryData()).run(this.knexQuery)
+    const res = await new QueryRunner(this.client, this.debugQueries, this.getQueryData()).run(
+      this.knexQuery
+    )
+    return res.rows
   }
 
   /**
