@@ -47,7 +47,7 @@ export class Schema implements SchemaContract {
   }
 
   /**
-   * Control whether to debug the query or not. The initial
+   * Control whether to debug the query. The initial
    * value is inherited from the query client
    */
   public debug: boolean = this.db.debug

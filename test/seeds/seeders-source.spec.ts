@@ -96,7 +96,7 @@ test.group('Seeds Source', (group) => {
     )
   })
 
-  test('sort multiple seeders directories seperately', async ({ assert }) => {
+  test('sort multiple seeders directories separately', async ({ assert }) => {
     const app = await setupApplication()
     const db = getDb(app)
 

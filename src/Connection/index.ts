@@ -62,7 +62,7 @@ export class Connection extends EventEmitter implements ConnectionContract {
   private readReplicas: any[] = []
 
   /**
-   * The round robin counter for reading config
+   * The round-robin counter for reading config
    */
   private roundRobinCounter = 0
 
@@ -116,7 +116,7 @@ export class Connection extends EventEmitter implements ConnectionContract {
    */
   private monitorPoolResources(): void {
     /**
-     * Pool has destroyed and hence we must cleanup resources
+     * Pool has destroyed and hence we must clean up resources
      * as well.
      */
     this.pool!.on('poolDestroySuccess', () => {
@@ -180,7 +180,7 @@ export class Connection extends EventEmitter implements ConnectionContract {
 
     /**
      * Reading replicas and storing them as a reference, so that we
-     * can pick a config from replicas as round robin.
+     * can pick a config from replicas as round-robin.
      */
     this.readReplicas = (replicas.read.connection as Array<any>).map((one) => {
       if (typeof one === 'string' || typeof config.connection === 'string') {
@@ -225,7 +225,7 @@ export class Connection extends EventEmitter implements ConnectionContract {
     }
 
     const index = this.roundRobinCounter++ % this.readReplicas.length
-    this.logger.trace({ connection: this.name }, `round robin using host at ${index} index`)
+    this.logger.trace({ connection: this.name }, `round-robin using host at ${index} index`)
     return this.readReplicas[index]
   }
 
@@ -273,7 +273,7 @@ export class Connection extends EventEmitter implements ConnectionContract {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     for (let _ of this.readReplicas) {
       configCopy.connection = this.readConfigResolver(this.config)
-      this.logger.trace({ connection: this.name }, 'spawing health check read connection')
+      this.logger.trace({ connection: this.name }, 'spawning health check read connection')
       const client = knex(configCopy)
 
       try {

@@ -191,9 +191,9 @@ export class HasOne implements HasOneRelationContract<LucidModel, LucidModel> {
   }
 
   /**
-   * Hydrates values object for persistance.
+   * Hydrates values object for persistence.
    */
-  public hydrateForPersistance(parent: LucidRow, values: ModelObject | LucidRow) {
+  public hydrateForPersistence(parent: LucidRow, values: ModelObject | LucidRow) {
     values[this.foreignKey] = getValue(parent, this.localKey, this, 'persist')
   }
 }

@@ -82,7 +82,7 @@ export class HasOneQueryClient implements HasOneClientContract<HasOne, LucidMode
       this.parent.$trx = trx
       await this.parent.save()
 
-      this.relation.hydrateForPersistance(this.parent, related)
+      this.relation.hydrateForPersistence(this.parent, related)
       related.$trx = trx
       await related.save()
     })
@@ -99,7 +99,7 @@ export class HasOneQueryClient implements HasOneClientContract<HasOne, LucidMode
       await parent.save()
 
       const valuesToPersist = Object.assign({}, values)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
       return this.relation.relatedModel().create(valuesToPersist, { client: trx, ...options })
     })
   }
@@ -117,7 +117,7 @@ export class HasOneQueryClient implements HasOneClientContract<HasOne, LucidMode
       await this.parent.save()
 
       const valuesToPersist = Object.assign({}, search)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
 
       return this.relation
         .relatedModel()
@@ -138,7 +138,7 @@ export class HasOneQueryClient implements HasOneClientContract<HasOne, LucidMode
       await this.parent.save()
 
       const valuesToPersist = Object.assign({}, search)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
 
       return this.relation
         .relatedModel()

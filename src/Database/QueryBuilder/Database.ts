@@ -32,7 +32,7 @@ const queryCallback: DBQueryCallback = (userFn, keysResolver) => {
   return (builder: Knex.QueryBuilder) => {
     /**
      * Sub queries don't need the client, since client is used to execute the query
-     * and subqueries are not executed seperately. That's why we just pass
+     * and subqueries are not executed separately. That's why we just pass
      * an empty object.
      *
      * Other option is to have this method for each instance of the class, but this
@@ -56,7 +56,7 @@ export class DatabaseQueryBuilder extends Chainable implements DatabaseQueryBuil
   private customReporterData: any
 
   /**
-   * Control whether to debug the query or not. The initial
+   * Control whether to debug the query. The initial
    * value is inherited from the query client
    */
   private debugQueries: boolean = this.client.debug

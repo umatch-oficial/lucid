@@ -26,7 +26,7 @@ import { Connection } from './index'
 
 /**
  * Connection manager job is to manage multiple named connections. You can add any number
- * or connections by registering their config only once and then make use of `connect`
+ * of connections by registering their config only once and then make use of `connect`
  * and `close` methods to create and destroy db connections.
  */
 export class ConnectionManager implements ConnectionManagerContract {
@@ -100,7 +100,7 @@ export class ConnectionManager implements ConnectionManagerContract {
   }
 
   /**
-   * Add a named connection with it's configuration. Make sure to call `connect`
+   * Add a named connection with its configuration. Make sure to call `connect`
    * before using the connection to make database queries.
    */
   public add(connectionName: string, config: ConnectionConfig): void {
@@ -141,7 +141,7 @@ export class ConnectionManager implements ConnectionManagerContract {
     }
 
     /**
-     * Create a new connection and monitor it's state
+     * Create a new connection and monitor its state
      */
     connection.connection = new Connection(connection.name, connection.config, this.logger)
     this.monitorConnection(connection.connection)
@@ -163,8 +163,8 @@ export class ConnectionManager implements ConnectionManagerContract {
 
     /**
      * Move the current connection to the orphan connections. We need
-     * to keep a seperate track of old connections to make sure
-     * they cleanup after some time
+     * to keep a separate track of old connections to make sure
+     * they clean up after some time
      */
     if (connection.connection) {
       this.orphanConnections.add(connection.connection)
@@ -194,16 +194,16 @@ export class ConnectionManager implements ConnectionManagerContract {
 
   /**
    * Returns a boolean telling if we have connection details for
-   * a given named connection. This method doesn't tell if
-   * connection is connected or not.
+   * a given named connection. This method doesn't tell whether
+   * connection is connected.
    */
   public has(connectionName: string): boolean {
     return this.connections.has(connectionName)
   }
 
   /**
-   * Returns a boolean telling if connection has been established
-   * with the database or not
+   * Returns a boolean telling whether connection has been established
+   * with the database
    */
   public isConnected(connectionName: string): boolean {
     if (!this.has(connectionName)) {

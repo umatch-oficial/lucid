@@ -125,7 +125,7 @@ export class PgDialect implements DialectContract {
 
   /**
    * Attempts to add advisory lock to the database and
-   * returns it's status.
+   * returns its status.
    */
   public async getAdvisoryLock(key: string): Promise<boolean> {
     const response = await this.client.rawQuery(

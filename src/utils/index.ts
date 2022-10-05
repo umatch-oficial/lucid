@@ -113,7 +113,7 @@ export function unique(value: any[]) {
 
 /**
  * Returns a diff of rows to be updated or inserted when performing
- * a many to many `attach`
+ * a many-to-many `attach`
  */
 export function syncDiff(original: ModelObject, incoming: ModelObject) {
   const diff = Object.keys(incoming).reduce<{ added: ModelObject; updated: ModelObject }>(
@@ -192,7 +192,7 @@ export function getDDLMethod(sql: string) {
 }
 
 /**
- * Normalizes the cherry picking object to always be an object with
+ * Normalizes the cherry-picking object to always be an object with
  * `pick` and `omit` properties
  */
 export function normalizeCherryPickObject(fields: CherryPickFields) {

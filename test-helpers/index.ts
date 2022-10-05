@@ -350,7 +350,7 @@ export async function resetTables() {
 }
 
 /**
- * Returns the query client typed to it's interface
+ * Returns the query client typed to its interface
  */
 export function getQueryClient(
   connection: ConnectionContract,
@@ -549,7 +549,7 @@ export function mapToObj<T extends any>(collection: Map<any, any>): T {
 }
 
 /**
- * Returns the base schema class typed to it's interface
+ * Returns the base schema class typed to its interface
  */
 export function getBaseSchema() {
   return Schema as SchemaConstructorContract

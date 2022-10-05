@@ -32,7 +32,7 @@ export class BelongsTo implements BelongsToRelationContract<LucidModel, LucidMod
   public readonly type = 'belongsTo'
 
   /**
-   * Whether or not the relationship instance has been booted
+   * Whether the relationship instance has been booted
    */
   public booted: boolean = false
 
@@ -76,8 +76,8 @@ export class BelongsTo implements BelongsToRelationContract<LucidModel, LucidMod
   }
 
   /**
-   * Returns a boolean telling if the related row belongs to the parent
-   * row or not.
+   * Returns a boolean telling whether the related row belongs
+   * to the parent row.
    */
   private isRelatedRow(parent: LucidRow, related: LucidRow) {
     return (
@@ -206,9 +206,9 @@ export class BelongsTo implements BelongsToRelationContract<LucidModel, LucidMod
   }
 
   /**
-   * Hydrates values object for persistance.
+   * Hydrates values object for persistence.
    */
-  public hydrateForPersistance(parent: LucidRow, related: ModelObject | LucidRow) {
+  public hydrateForPersistence(parent: LucidRow, related: ModelObject | LucidRow) {
     parent[this.foreignKey] = getValue(related, this.localKey, this, 'associate')
   }
 }

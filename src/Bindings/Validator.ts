@@ -248,7 +248,7 @@ export function extendValidator(
   )
 
   /**
-   * Unique rule to check if value is unique or not
+   * Unique rule to check whether value is unique
    */
   const uniqueChecker = new DbRowCheck('unique', database, validator.helpers)
 

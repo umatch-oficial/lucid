@@ -723,7 +723,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
    * other queries
    */
   export interface RawQueryBuilderContract<Result = any>
-    extends ExcutableQueryBuilderContract<Result> {
+    extends ExecutableQueryBuilderContract<Result> {
     knexQuery: Knex.Raw
     client: QueryClientContract
     wrap(before: string, after: string): this
@@ -795,7 +795,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
    */
   export interface DatabaseQueryBuilderContract<Result = Dictionary<any, string>>
     extends ChainableContract,
-      ExcutableQueryBuilderContract<Result[]> {
+      ExecutableQueryBuilderContract<Result[]> {
     client: QueryClientContract
     returning: Returning<this>
 
@@ -875,7 +875,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
    * Insert query builder to perform database inserts.
    */
   export interface InsertQueryBuilderContract<Result = any>
-    extends ExcutableQueryBuilderContract<Result> {
+    extends ExecutableQueryBuilderContract<Result> {
     knexQuery: Knex.QueryBuilder
     client: QueryClientContract
 
@@ -904,7 +904,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
   /**
    * A executable query builder will always have these methods on it.
    */
-  export interface ExcutableQueryBuilderContract<Result> extends Promise<Result> {
+  export interface ExecutableQueryBuilderContract<Result> extends Promise<Result> {
     debug(debug: boolean): this
     timeout(time: number, options?: { cancel: boolean }): this
     useTransaction(trx: TransactionClientContract): this

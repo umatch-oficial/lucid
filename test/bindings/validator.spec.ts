@@ -101,7 +101,7 @@ test.group('Validator | exists', (group) => {
     })
   })
 
-  test('add where contraints', async ({ assert }) => {
+  test('add where constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -149,7 +149,7 @@ test.group('Validator | exists', (group) => {
     }
   })
 
-  test('add where contraints with refs', async ({ assert }) => {
+  test('add where constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -202,7 +202,7 @@ test.group('Validator | exists', (group) => {
     }
   })
 
-  test('add wherein contraints', async ({ assert }) => {
+  test('add wherein constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -250,7 +250,7 @@ test.group('Validator | exists', (group) => {
     }
   })
 
-  test('add wherein contraints with refs', async ({ assert }) => {
+  test('add wherein constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -730,7 +730,7 @@ test.group('Validator | unique', (group) => {
     })
   })
 
-  test('add where contraints', async ({ assert }) => {
+  test('add where constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -778,7 +778,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add where contraints with refs', async ({ assert }) => {
+  test('add where constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -831,7 +831,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add where in contraints', async ({ assert }) => {
+  test('add where in constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -879,7 +879,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add where in contraints with refs', async ({ assert }) => {
+  test('add where in constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -932,7 +932,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add whereNot contraints', async ({ assert }) => {
+  test('add whereNot constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -980,7 +980,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add whereNot contraints with refs', async ({ assert }) => {
+  test('add whereNot constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -1033,7 +1033,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add whereNot in contraints', async ({ assert }) => {
+  test('add whereNot in constraints', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db
@@ -1081,7 +1081,7 @@ test.group('Validator | unique', (group) => {
     }
   })
 
-  test('add whereNot in contraints with refs', async ({ assert }) => {
+  test('add whereNot in constraints with refs', async ({ assert }) => {
     assert.plan(3)
 
     const [row] = await db

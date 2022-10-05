@@ -29,7 +29,7 @@ export class RawQueryBuilder implements RawQueryBuilderContract {
   private customReporterData: any
 
   /**
-   * Control whether to debug the query or not. The initial
+   * Control whether to debug the query. The initial
    * value is inherited from the query client
    */
   private debugQueries: boolean = this.client.debug

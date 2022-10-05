@@ -209,7 +209,7 @@ export const afterFind: HooksDecorator = () => {
 }
 
 /**
- * Before/After fetchs hook
+ * Before/After fetch hook
  */
 export const beforeFetch: HooksDecorator = () => {
   return function decorateAsColumn(target, property) {

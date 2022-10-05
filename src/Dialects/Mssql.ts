@@ -51,7 +51,7 @@ export class MssqlDialect implements DialectContract {
   }
 
   /**
-   * Truncate mssql table. Disabling foreign key constriants alone is
+   * Truncate mssql table. Disabling foreign key constraints alone is
    * not enough for SQL server.
    *
    * One has to drop all FK constraints and then re-create them, and

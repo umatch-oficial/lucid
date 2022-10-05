@@ -36,7 +36,7 @@ export class HasMany extends BaseRelation implements FactoryRelationContract {
     const factory = this.compile(this, parent, callback)
 
     const customAttributes = {}
-    this.relation.hydrateForPersistance(parent, customAttributes)
+    this.relation.hydrateForPersistence(parent, customAttributes)
 
     const instances = await factory
       .tap((related) => {
@@ -54,7 +54,7 @@ export class HasMany extends BaseRelation implements FactoryRelationContract {
     const factory = this.compile(this, parent, callback)
 
     const customAttributes = {}
-    this.relation.hydrateForPersistance(parent, customAttributes)
+    this.relation.hydrateForPersistence(parent, customAttributes)
 
     const instance = await factory
       .tap((related) => {

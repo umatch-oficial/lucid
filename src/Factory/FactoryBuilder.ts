@@ -24,7 +24,7 @@ import { FactoryContext } from './FactoryContext'
  */
 export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContract<LucidModel>> {
   /**
-   * Relationships to setup. Do note: It is possible to load one relationship
+   * Relationships to set up. Do note: It is possible to load one relationship
    * twice. A practical use case is to apply different states. For example:
    *
    * Make user with "3 active posts" and "2 draft posts"
@@ -73,20 +73,20 @@ export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContra
   private appliedStates: Set<string> = new Set()
 
   /**
-   * Custom context passed using `useCtx` method. It not defined, we will
+   * Custom context passed using `useCtx` method. If not defined, we will
    * create one inline inside `create` and `make` methods
    */
   private ctx?: FactoryContextContract
 
   /**
-   * Pivot attributes for a many to many relationship
+   * Pivot attributes for a many-to-many relationship
    */
   private attributesForPivotTable?: ModelObject | ModelObject[]
 
   /**
    * Instead of relying on the `FactoryModelContract`, we rely on the
-   * `FactoryModel`, since it exposes certain API's required for
-   * the runtime operations and those API's are not exposed
+   * `FactoryModel`, since it exposes certain APIs required for
+   * the runtime operations, and those APIs are not exposed
    * on the interface to keep the API clean
    */
   constructor(
@@ -177,8 +177,8 @@ export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContra
   }
 
   /**
-   * Compile factory by instantiating model instance, applying merge
-   * attributes, apply state
+   * Compile factory by instantiating model instance, merging
+   * attributes and applying state
    */
   private async compile(ctx: FactoryContext) {
     try {
@@ -276,8 +276,8 @@ export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContra
 
     /**
      * Create belongs to relationships before calling the save method. Even though
-     * we can update the foriegn key after the initial insert call, we avoid it
-     * for cases, where FK is a not nullable.
+     * we can update the foreign key after the initial insert call, we avoid it
+     * for cases where FK is a not nullable.
      */
     await this.createRelations(modelInstance, ctx, 'before')
 
@@ -293,7 +293,7 @@ export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContra
     await this.createRelations(modelInstance, ctx, 'after')
 
     /**
-     * Fire after hook before the transaction is committed, so that
+     * Fire 'after' hook before the transaction is committed, so that
      * hook can run db operations using the same transaction
      */
     await this.factory.hooks.exec('after', 'create', this, modelInstance, ctx)
@@ -369,9 +369,9 @@ export class FactoryBuilder implements FactoryBuilderContract<FactoryModelContra
   }
 
   /**
-   * Define pivot attributes when persisting a many to many
+   * Define pivot attributes when persisting a many-to-many
    * relationship. Results in a noop, when not called
-   * for a many to many relationship
+   * for a many-to-many relationship
    */
   public pivotAttributes(attributes: ModelObject | ModelObject[]): this {
     this.attributesForPivotTable = attributes

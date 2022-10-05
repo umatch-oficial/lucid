@@ -23,7 +23,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     SimplePaginatorMetaKeys,
     SimplePaginatorContract,
     TransactionClientContract,
-    ExcutableQueryBuilderContract,
+    ExecutableQueryBuilderContract,
   } from '@ioc:Adonis/Lucid/Database'
 
   /**
@@ -330,7 +330,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    */
   export interface ModelQueryBuilderContract<Model extends LucidModel, Result = InstanceType<Model>>
     extends ChainableContract,
-      ExcutableQueryBuilderContract<Result[]> {
+      ExecutableQueryBuilderContract<Result[]> {
     model: Model
     returning: Returning<this>
 
@@ -345,7 +345,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     usePreloader(preloader: PreloaderContract<LucidRow>): this
 
     /**
-     * Whether or not the query is a child query generated for `.where`
+     * Whether the query is a child query generated for `.where`
      * callbacks
      */
     isChildQuery: boolean
@@ -705,7 +705,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    */
   export interface LucidModel {
     /**
-     * Whether or not model has been booted. After this model configurations
+     * Whether model has been booted. After this model configurations
      * are ignored
      */
     readonly booted: boolean
@@ -1010,7 +1010,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
 
     /**
      * Find rows or create in-memory instances of the missing
-     * one's.
+     * ones.
      */
     fetchOrNewUpMany<T extends LucidModel>(
       this: T,
@@ -1035,7 +1035,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): Promise<InstanceType<T>[]>
 
     /**
-     * Update existing rows or create new one's.
+     * Update existing rows or create new ones.
      */
     updateOrCreateMany<T extends LucidModel>(
       this: T,
@@ -1078,7 +1078,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    */
   export interface AdapterContract {
     /**
-     * Returns query client for a model instance by inspecting it's options
+     * Returns query client for a model instance by inspecting its options
      */
     modelClient(instance: LucidRow): QueryClientContract
 
@@ -1160,7 +1160,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): string
 
     /**
-     * Pivot table name for many to many relationship
+     * Pivot table name for many-to-many relationship
      */
     relationPivotTable(
       relation: 'manyToMany',
@@ -1170,7 +1170,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): string
 
     /**
-     * Pivot foreign key for many to many relationship
+     * Pivot foreign key for many-to-many relationship
      */
     relationPivotForeignKey(
       relation: 'manyToMany',

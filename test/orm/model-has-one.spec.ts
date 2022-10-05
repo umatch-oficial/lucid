@@ -1758,7 +1758,7 @@ test.group('Model | HasOne | has', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Profile extends BaseModel {
       @column({ isPrimary: true })
       public id: number
@@ -1824,7 +1824,7 @@ test.group('Model | HasOne | whereHas', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Profile extends BaseModel {
       @column({ isPrimary: true })
       public id: number

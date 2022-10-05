@@ -72,7 +72,7 @@ export class HasManyThroughQueryBuilder
     const queryAction = this.queryAction()
 
     /**
-     * Eager query contraints
+     * Eager query constraints
      */
     if (Array.isArray(this.parent)) {
       builder.whereIn(
@@ -153,7 +153,7 @@ export class HasManyThroughQueryBuilder
      */
     if (!this.hasAggregates) {
       /**
-       * Select * from related model when user is not cherry picking
+       * Select * from related model when user is not cherry-picking
        * keys
        */
       if (!this.cherryPickingKeys) {

@@ -39,7 +39,7 @@ export class SimplePaginator extends Array implements SimplePaginatorContract<an
   public readonly firstPage: number = 1
 
   /**
-   * Find if results set is empty or not
+   * Find whether result set is empty
    */
   public readonly isEmpty: boolean
 
@@ -50,11 +50,12 @@ export class SimplePaginator extends Array implements SimplePaginatorContract<an
   public readonly total = Number(this.totalNumber)
 
   /**
-   * Find if there are total records or not. This is not same as
+   * Find whether there are total records. This is not same as
    * `isEmpty`.
    *
-   * The `isEmpty` reports about the current set of results. However `hasTotal`
-   * reports about the total number of records, regardless of the current.
+   * The `isEmpty` reports about the current set of results. `hasTotal`,
+   * on the other hand, reports about the total number of records,
+   * regardless of the current.
    */
   public readonly hasTotal: boolean = this.total > 0
 
@@ -69,7 +70,7 @@ export class SimplePaginator extends Array implements SimplePaginatorContract<an
   public readonly hasMorePages: boolean = this.lastPage > this.currentPage
 
   /**
-   * Find if there are enough results to be paginated or not
+   * Find whether there are enough results to be paginated
    */
   public readonly hasPages: boolean = this.lastPage !== 1
 
@@ -138,7 +139,7 @@ export class SimplePaginator extends Array implements SimplePaginatorContract<an
   }
 
   /**
-   * Returns url for a given page. Doesn't validates the integrity of the
+   * Returns url for a given page. Doesn't validate the integrity of the
    * page
    */
   public getUrl(page: number): string {

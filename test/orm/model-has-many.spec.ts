@@ -2147,7 +2147,7 @@ test.group('Model | HasMany | has', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Post extends BaseModel {
       @column()
       public userId: number
@@ -2336,7 +2336,7 @@ test.group('Model | HasMany | has', (group) => {
     assert.lengthOf(users, 1)
   })
 
-  test('define or clause in existance query', async ({ assert }) => {
+  test('define or clause in existence query', async ({ assert }) => {
     class Post extends BaseModel {
       @column()
       public userId: number
@@ -2402,7 +2402,7 @@ test.group('Model | HasMany | has', (group) => {
     assert.lengthOf(users, 2)
   })
 
-  test('define not existance query', async ({ assert }) => {
+  test('define not existence query', async ({ assert }) => {
     class Post extends BaseModel {
       @column()
       public userId: number
@@ -2465,7 +2465,7 @@ test.group('Model | HasMany | has', (group) => {
     assert.equal(users[0].username, 'nikk')
   })
 
-  test('define or not existance query', async ({ assert }) => {
+  test('define or not existence query', async ({ assert }) => {
     class Post extends BaseModel {
       @column()
       public userId: number
@@ -2555,7 +2555,7 @@ test.group('Model | HasMany | whereHas', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Post extends BaseModel {
       @column()
       public userId: number

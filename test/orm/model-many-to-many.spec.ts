@@ -938,7 +938,7 @@ test.group('Model | ManyToMany | sub queries', (group) => {
   })
 })
 
-test.group('Model | Many To Many | aggregates', (group) => {
+test.group('Model | Many-To-Many | aggregates', (group) => {
   group.setup(async () => {
     app = await setupApplication()
     db = getDb(app)
@@ -2219,7 +2219,7 @@ test.group('Model | ManyToMany | has', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Skill extends BaseModel {
       @column({ isPrimary: true })
       public id: number
@@ -2342,7 +2342,7 @@ test.group('Model | ManyToMany | whereHas', (group) => {
     await resetTables()
   })
 
-  test('limit rows to the existance of relationship', async ({ assert }) => {
+  test('limit rows to the existence of relationship', async ({ assert }) => {
     class Skill extends BaseModel {
       @column({ isPrimary: true })
       public id: number
@@ -6214,7 +6214,7 @@ test.group('Model | ManyToMany | sync', (group) => {
     await resetTables()
   })
 
-  test("sync ids by dropping only the missing one's", async ({ assert }) => {
+  test("sync ids by dropping only the missing ones", async ({ assert }) => {
     class Skill extends BaseModel {
       @column({ isPrimary: true })
       public id: number

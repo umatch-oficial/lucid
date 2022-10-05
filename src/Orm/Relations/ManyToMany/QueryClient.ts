@@ -173,7 +173,7 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
       }
 
       /**
-       * Sync when checkExisting = true, to avoid duplicate rows. Otherwise
+       * Sync when checkExisting = true, to avoid duplicate rows. Otherwise,
        * perform insert
        */
       if (performSync) {
@@ -218,7 +218,7 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
       )
 
       /**
-       * Sync when checkExisting = true, to avoid duplicate rows. Otherwise
+       * Sync when checkExisting = true, to avoid duplicate rows. Otherwise,
        * perform insert
        */
       if (performSync) {
@@ -300,7 +300,7 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
   }
 
   /**
-   * Attach one or more related models using it's foreign key value
+   * Attach one or more related models using its foreign key value
    * by performing insert inside the pivot table.
    */
   public async attach(
@@ -313,7 +313,7 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
     const [, foreignKeyValue] = this.relation.getPivotPair(this.parent)
 
     /**
-     * Finding if `ids` parameter is an object or not
+     * Finding whether `ids` parameter is an object
      */
     const hasAttributes = !Array.isArray(ids)
 
@@ -347,7 +347,7 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
     const query = this.pivotQuery()
 
     /**
-     * Scope deletion to specific rows when `id` is defined. Otherwise
+     * Scope deletion to specific rows when `id` is defined. Otherwise,
      * delete all the rows
      */
     if (ids && ids.length) {
@@ -367,9 +367,9 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
   /**
    * Sync pivot rows by
    *
-   * - Dropping the non-existing one's.
-   * - Creating the new one's.
-   * - Updating the existing one's with different attributes.
+   * - Dropping the non-existing ones.
+   * - Creating the new ones.
+   * - Updating the existing ones with different attributes.
    */
   public async sync(
     ids: (string | number)[] | { [key: string]: ModelObject },
@@ -384,8 +384,8 @@ export class ManyToManyQueryClient implements ManyToManyClientContract<ManyToMan
       const hasAttributes = !Array.isArray(ids)
 
       /**
-       * An object of pivot rows from from the incoming ids or
-       * an object of key-value pair.
+       * An object of pivot rows from the incoming ids or
+       * an object of key-value pairs.
        */
       const pivotRows = !hasAttributes
         ? (ids as (string | number)[]).reduce((result, id) => {

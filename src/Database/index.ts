@@ -101,9 +101,9 @@ export class Database extends Macroable implements DatabaseContract {
   }
 
   /**
-   * Compute whether health check is enabled or not after registering the connections.
+   * Compute whether health check is enabled after registering the connections.
    * There are chances that all pre-registered connections are not using health
-   * checks but a dynamic connection is using it. We don't support that use case
+   * checks, but a dynamic connection is using it. We don't support that use case
    * for now, since it complicates things a lot and forces us to register the
    * health checker on demand.
    */
@@ -118,7 +118,7 @@ export class Database extends Macroable implements DatabaseContract {
 
   /**
    * Registering all connections with the manager, so that we can fetch
-   * and connect with them whenver required.
+   * and connect with them whenever required.
    */
   private registerConnections() {
     Object.keys(this.config.connections).forEach((name) => {
@@ -151,7 +151,7 @@ export class Database extends Macroable implements DatabaseContract {
     }
 
     /**
-     * Connect is noop when already connected
+     * Connect is a noop when already connected
      */
     this.manager.connect(connection)
 
@@ -186,7 +186,7 @@ export class Database extends Macroable implements DatabaseContract {
       : new QueryClient('dual', rawConnection, this.emitter)
 
     /**
-     * Passing profiler to the query client for profiling queries
+     * Pass profiler to the query client
      */
     queryClient.profiler = options.profiler
     return queryClient
@@ -231,7 +231,7 @@ export class Database extends Macroable implements DatabaseContract {
 
   /**
    * Returns an instance of raw query builder. Optionally one can
-   * defined the `read/write` mode in which to execute the
+   * define the `read/write` mode in which to execute the
    * query
    */
   public rawQuery(sql: string, bindings?: any, options?: DatabaseClientOptions) {
@@ -358,7 +358,7 @@ export class Database extends Macroable implements DatabaseContract {
     if (!trx) {
       throw new Exception(
         [
-          'Cannot rollback a non-existing global transaction.',
+          'Cannot roll back a non-existing global transaction.',
           ' Make sure you are not calling "commitGlobalTransaction" twice',
         ].join('')
       )

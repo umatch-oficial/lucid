@@ -33,7 +33,7 @@ import { DatabaseQueryBuilder } from '../Database/QueryBuilder/Database'
 
 /**
  * Query client exposes the API to fetch instance of different query builders
- * to perform queries on a selecte connection.
+ * to perform queries on a selected connection.
  */
 export class QueryClient implements QueryClientContract {
   /**
@@ -90,7 +90,7 @@ export class QueryClient implements QueryClientContract {
   }
 
   /**
-   * Returns the write client
+   * Returns the Write client
    */
   public getWriteClient(): Knex {
     if (this.mode === 'write' || this.mode === 'dual') {
@@ -190,7 +190,7 @@ export class QueryClient implements QueryClientContract {
     transaction.profiler = this.profiler?.create('trx:begin', { state: 'begin' })
 
     /**
-     * Self managed transaction
+     * Self-managed transaction
      */
     if (typeof callback === 'function') {
       try {

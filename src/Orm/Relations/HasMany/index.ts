@@ -32,8 +32,7 @@ export class HasMany implements HasManyRelationContract<LucidModel, LucidModel> 
   public readonly type = 'hasMany'
 
   /**
-   * Whether or not the relationship instance has been
-   * booted
+   * Whether the relationship instance has been booted
    */
   public booted: boolean = false
 
@@ -70,8 +69,8 @@ export class HasMany implements HasManyRelationContract<LucidModel, LucidModel> 
   ) {}
 
   /**
-   * Returns a boolean saving related row belongs to the parent
-   * row or not.
+   * Returns a boolean telling whether related row belongs to
+   * the parent row.
    */
   private isRelatedRow(parent: LucidRow, related: LucidRow) {
     return parent[this.localKey] !== undefined && related[this.foreignKey] === parent[this.localKey]
@@ -199,9 +198,9 @@ export class HasMany implements HasManyRelationContract<LucidModel, LucidModel> 
   }
 
   /**
-   * Hydrates values object for persistance.
+   * Hydrates values object for persistence.
    */
-  public hydrateForPersistance(parent: LucidRow, values: ModelObject | LucidRow) {
+  public hydrateForPersistence(parent: LucidRow, values: ModelObject | LucidRow) {
     values[this.foreignKey] = getValue(parent, this.localKey, this, 'persist')
   }
 }

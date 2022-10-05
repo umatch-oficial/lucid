@@ -33,8 +33,8 @@ export class ManyToManyQueryBuilder
   protected appliedConstraints: boolean = false
 
   /**
-   * A boolean to know if query build targets only the pivot
-   * table or not
+   * A boolean to know whether query build targets only the
+   * pivot table
    */
   public get isPivotOnlyQuery() {
     return this.pivotQuery
@@ -106,7 +106,7 @@ export class ManyToManyQueryBuilder
     const queryAction = this.queryAction()
 
     /**
-     * Eager query contraints
+     * Eager query constraints
      */
     if (Array.isArray(this.parent)) {
       this.wrapExisting().whereInPivot(
@@ -167,7 +167,7 @@ export class ManyToManyQueryBuilder
      */
     if (!this.hasAggregates) {
       /**
-       * Select * from related model when user is not cherry picking
+       * Select * from related model when user is not cherry-picking
        * keys
        */
       if (!this.cherryPickingKeys) {

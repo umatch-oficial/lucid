@@ -23,8 +23,8 @@ export class HasManyThroughSubQueryBuilder
   implements RelationSubQueryBuilderContract<LucidModel>
 {
   /**
-   * A boolean to track if query constraints for the relationship
-   * has been applied or not
+   * A boolean to track whether query constraints for the relationship
+   * have been applied
    */
   protected appliedConstraints: boolean = false
 

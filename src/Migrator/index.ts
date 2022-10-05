@@ -58,7 +58,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   private schemaVersionsTableName = `${this.schemaTableName}_versions`
 
   /**
-   * Whether or not the migrator has been booted
+   * Whether the migrator has been booted
    */
   private booted: boolean = false
 
@@ -106,8 +106,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
 
   /**
    * Existing version of migrations. We use versioning to upgrade
-   * existing migrations if we are plan to make a breaking
-   * change.
+   * existing migrations if we plan to make a breaking change.
    */
   public version: number = 2
 
@@ -139,7 +138,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   }
 
   /**
-   * Roll back the transaction when it's client is a transaction client
+   * Roll back the transaction when its client is a transaction client
    */
   private async rollback(client: QueryClientContract) {
     if (client.isTransaction) {
@@ -148,7 +147,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   }
 
   /**
-   * Commits a transaction when it's client is a transaction client
+   * Commits a transaction when its client is a transaction client
    */
   private async commit(client: QueryClientContract) {
     if (client.isTransaction) {
@@ -281,8 +280,8 @@ export class Migrator extends EventEmitter implements MigratorContract {
 
   /**
    * Makes the migrations table (if missing). Also created in dry run, since
-   * we always reads from the schema table to find which migrations files to
-   * execute and that cannot done without missing table.
+   * we always read from the schema table to find which migration files to
+   * execute.
    */
   private async makeMigrationsTable() {
     const hasTable = await this.client.schema.hasTable(this.schemaTableName)
@@ -338,7 +337,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   /**
    * Upgrade migrations name from version 1 to version 2
    */
-  private async upgradeFromOnetoTwo() {
+  private async upgradeFromOneToTwo() {
     const migrations = await this.getMigratedFilesTillBatch(0)
     const client = await this.getClient(false)
 
@@ -368,7 +367,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   private async upgradeVersion(latestVersion: number): Promise<void> {
     if (latestVersion === 1) {
       this.emit('upgrade:version', { from: 1, to: 2 })
-      await this.upgradeFromOnetoTwo()
+      await this.upgradeFromOneToTwo()
     }
   }
 
@@ -408,7 +407,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
 
   /**
    * Boot the migrator to perform actions. All boot methods must
-   * work regardless of dryRun is enabled or not.
+   * work regardless of whether dryRun is enabled.
    */
   private async boot() {
     this.emit('start')
@@ -454,7 +453,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
   }
 
   /**
-   * Migrate down (aka rollback)
+   * Migrate down (aka roll back)
    */
   private async runDown(batch?: number) {
     if (this.app.inProduction && this.migrationsConfig.disableRollbacksInProduction) {
@@ -471,8 +470,8 @@ export class Migrator extends EventEmitter implements MigratorContract {
     const collected = await this.migrationSource.getMigrations()
 
     /**
-     * Finding schema files for migrations to rollback. We do not perform
-     * rollback when any of the files are missing
+     * Finding schema files for migrations to roll back. We do not perform
+     * roll back when any of the files are missing
      */
     existing.forEach((file) => {
       const migration = collected.find(({ name }) => name === file.name)
@@ -529,7 +528,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
 
       /**
        * Already migrated. We move to an additional list, so that we can later
-       * find the one's which are migrated but now missing on the disk
+       * find the ones which are migrated but now missing on the disk
        */
       if (migrated) {
         existingCollected.add(migrated.name)
@@ -548,7 +547,7 @@ export class Migrator extends EventEmitter implements MigratorContract {
     })
 
     /**
-     * These are the one's which were migrated earlier, but now missing
+     * These are the ones which were migrated earlier, but now missing
      * on the disk
      */
     existing.forEach(({ name, batch, migration_time }) => {

@@ -81,7 +81,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       this.parent.$trx = trx
       await this.parent.save()
 
-      this.relation.hydrateForPersistance(this.parent, related)
+      this.relation.hydrateForPersistence(this.parent, related)
       related.$trx = trx
       await related.save()
     })
@@ -98,7 +98,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await parent.save()
 
       for (let row of related) {
-        this.relation.hydrateForPersistance(this.parent, row)
+        this.relation.hydrateForPersistence(this.parent, row)
         row.$trx = trx
         await row.save()
       }
@@ -114,7 +114,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await this.parent.save()
 
       const valuesToPersist = Object.assign({}, values)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
       return this.relation.relatedModel().create(valuesToPersist, { client: trx, ...options })
     })
   }
@@ -134,7 +134,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
 
       const valuesToPersist = values.map((value) => {
         const valueToPersist = Object.assign({}, value)
-        this.relation.hydrateForPersistance(this.parent, valueToPersist)
+        this.relation.hydrateForPersistence(this.parent, valueToPersist)
         return valueToPersist
       })
 
@@ -155,7 +155,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await this.parent.save()
 
       const valuesToPersist = Object.assign({}, search)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
 
       return this.relation
         .relatedModel()
@@ -176,7 +176,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await this.parent.save()
 
       const valuesToPersist = Object.assign({}, search)
-      this.relation.hydrateForPersistance(this.parent, valuesToPersist)
+      this.relation.hydrateForPersistence(this.parent, valuesToPersist)
 
       return this.relation
         .relatedModel()
@@ -185,7 +185,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
   }
 
   /**
-   * Fetch the existing related rows or create new one's
+   * Fetch the existing related rows or create new ones
    */
   public async fetchOrCreateMany(
     payload: ModelObject[],
@@ -197,7 +197,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await this.parent.save()
 
       payload.forEach((row) => {
-        this.relation.hydrateForPersistance(this.parent, row)
+        this.relation.hydrateForPersistence(this.parent, row)
       })
 
       predicate = Array.isArray(predicate) ? predicate : predicate ? [predicate] : []
@@ -212,7 +212,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
   }
 
   /**
-   * Update the existing related rows or create new one's
+   * Update the existing related rows or create new ones
    */
   public async updateOrCreateMany(
     payload: ModelObject[],
@@ -224,7 +224,7 @@ export class HasManyQueryClient implements HasManyClientContract<HasMany, LucidM
       await this.parent.save()
 
       payload.forEach((row) => {
-        this.relation.hydrateForPersistance(this.parent, row)
+        this.relation.hydrateForPersistence(this.parent, row)
       })
 
       predicate = Array.isArray(predicate) ? predicate : predicate ? [predicate] : []

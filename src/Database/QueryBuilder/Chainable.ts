@@ -230,7 +230,7 @@ export abstract class Chainable extends Macroable implements ChainableContract {
 
   /**
    * Transforms the value to something that knex can internally understand and
-   * handle. It includes.
+   * handle. It includes:
    *
    * 1. Returning the `knexBuilder` for sub queries.
    * 2. Returning the `knex.refBuilder` for reference builder.

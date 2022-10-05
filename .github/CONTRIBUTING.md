@@ -3,7 +3,7 @@
 AdonisJS is a community driven project. You are free to contribute in any of the following ways.
 
 - [Coding style](coding-style)
-- [Fix bugs by creating PR's](fix-bugs-by-creating-prs)
+- [Fix bugs by creating PRs](fix-bugs-by-creating-prs)
 - [Share an RFC for new features or big changes](share-an-rfc-for-new-features-or-big-changes)
 - [Report security issues](report-security-issues)
 - [Be a part of the community](be-a-part-of-community)
@@ -12,7 +12,7 @@ AdonisJS is a community driven project. You are free to contribute in any of the
 
 Majority of AdonisJS core packages are written in Typescript. Having a brief knowledge of Typescript is required to contribute to the core.
 
-## Fix bugs by creating PR's
+## Fix bugs by creating PRs
 
 We appreciate every time you report a bug in the framework or related libraries. However, taking time to submit a PR can help us in fixing bugs quickly and ensure a healthy and stable eco-system.
 
@@ -27,7 +27,7 @@ Go through the following points, before creating a new PR.
 
 ## Share an RFC for new features or big changes
 
-Sharing PR's for small changes works great. However, when contributing big features to the framework, it is required to go through the RFC process.
+Sharing PRs for small changes works great. However, when contributing big features to the framework, it is required to go through the RFC process.
 
 ### What is an RFC?
 

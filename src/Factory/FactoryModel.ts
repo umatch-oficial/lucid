@@ -111,7 +111,7 @@ export class FactoryModel<Model extends LucidModel> implements FactoryModelContr
   public getState(state: string): StateCallback<Model> {
     const stateCallback = this.states[state]
     if (!stateCallback) {
-      throw new Error(`Cannot apply undefined state "${state}". Double check the model factory`)
+      throw new Error(`Cannot apply undefined state "${state}". Double-check the model factory`)
     }
 
     return stateCallback
@@ -125,7 +125,7 @@ export class FactoryModel<Model extends LucidModel> implements FactoryModelContr
     const relationship = this.relations[relation]
     if (!relationship) {
       throw new Error(
-        `Cannot reference "${relation}" relationship. Make sure to setup the relationship within the factory`
+        `Cannot reference "${relation}" relationship. Make sure to set up the relationship within the factory`
       )
     }
 
@@ -179,7 +179,7 @@ export class FactoryModel<Model extends LucidModel> implements FactoryModelContr
         throw new Error(
           [
             `Cannot define "${relation}" relationship.`,
-            '"hasManyThrough" relationship does not have any persistance API',
+            '"hasManyThrough" relationship does not have any persistence API',
           ].join(' ')
         )
     }
@@ -209,8 +209,8 @@ export class FactoryModel<Model extends LucidModel> implements FactoryModelContr
    */
   public build() {
     /**
-     * Return a build object, which proxies all of the factory builder
-     * method and invokes them with a fresh instance.
+     * Return a build object, which proxies all the factory builder
+     * methods and invokes them with a fresh instance.
      */
     const builder = {
       factory: this,

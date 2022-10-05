@@ -92,7 +92,7 @@ export abstract class BaseSubQueryBuilder
     const columns = this.getSelectedColumns()
 
     /**
-     * No columns have been defined, we will let knex do it's job by
+     * No columns have been defined, we will let knex do its job by
      * adding `select *`
      */
     if (!columns) {

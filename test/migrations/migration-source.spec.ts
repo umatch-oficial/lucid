@@ -78,7 +78,7 @@ test.group('MigrationSource', (group) => {
     )
   })
 
-  test('sort multiple migration directories seperately', async ({ assert }) => {
+  test('sort multiple migration directories separately', async ({ assert }) => {
     const config = Object.assign({}, db.getRawConnection('primary')!.config, {
       migrations: {
         paths: ['./database/secondary', './database/primary'],

@@ -36,7 +36,7 @@ export class BelongsTo extends BaseRelation implements FactoryRelationContract {
     const factory = this.compile(this, parent, callback)
     const related = await factory.makeStubbed()
 
-    this.relation.hydrateForPersistance(parent, related)
+    this.relation.hydrateForPersistence(parent, related)
     parent.$setRelated(this.relation.relationName, related)
   }
 
@@ -47,7 +47,7 @@ export class BelongsTo extends BaseRelation implements FactoryRelationContract {
     const factory = this.compile(this, parent, callback)
     const related = await factory.create()
 
-    this.relation.hydrateForPersistance(parent, related)
+    this.relation.hydrateForPersistence(parent, related)
     parent.$setRelated(this.relation.relationName, related)
   }
 }

@@ -66,14 +66,14 @@ export class SnakeCaseNamingStrategy implements NamingStrategyContract {
   }
 
   /**
-   * Pivot table name for many to many relationship
+   * Pivot table name for many-to-many relationship
    */
   public relationPivotTable(_: 'manyToMany', model: LucidModel, relatedModel: LucidModel): string {
     return string.snakeCase([relatedModel.name, model.name].sort().join('_'))
   }
 
   /**
-   * Pivot foreign key for many to many relationship
+   * Pivot foreign key for many-to-many relationship
    */
   public relationPivotForeignKey(_: 'manyToMany', model: LucidModel): string {
     return string.snakeCase(`${model.name}_${model.primaryKey}`)

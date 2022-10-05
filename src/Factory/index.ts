@@ -33,7 +33,7 @@ export class FactoryManager implements FactoryManagerContract {
   }
 
   /**
-   * Define custom callback to generate stub ids
+   * Define a custom callback to generate stub ids
    */
   public stubId(callback: StubIdCallback) {
     this.stubIdCallback = callback

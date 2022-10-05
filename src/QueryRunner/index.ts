@@ -16,7 +16,7 @@ import { QueryReporter } from '../QueryReporter'
  * Query runner exposes the API for executing knex query builder by using the
  * read/write replicas supported only by Lucid.
  *
- * Also it will emit the query data and profile the queries as well.
+ * Also, it will emit the query data and profile the queries.
  */
 export class QueryRunner {
   private reporter = new QueryReporter(this.client, this.debug, this.logData)
@@ -28,7 +28,7 @@ export class QueryRunner {
   ) {}
 
   /**
-   * Is query dialect using sqlite database or not
+   * Whether query dialect is using sqlite database
    */
   private isUsingSqlite() {
     return this.client.dialect.name === 'sqlite3'
@@ -43,7 +43,7 @@ export class QueryRunner {
   }
 
   /**
-   * Find if query is a write query or not.
+   * Find whether query is a write query
    */
   private isWriteQuery(query: Knex.QueryBuilder | Knex.Raw) {
     return ['update', 'del', 'delete', 'insert'].includes(query['_method'])
@@ -98,7 +98,7 @@ export class QueryRunner {
     const queryClient = this.getQueryClient(query)
 
     /**
-     * Acquire connection from the knex connection pool. This is will
+     * Acquire connection from the knex connection pool. This will
      * use the rounding robin mechanism and force set it on
      * the query.
      */

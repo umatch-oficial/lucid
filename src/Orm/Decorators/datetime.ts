@@ -12,7 +12,7 @@ import { Exception } from '@poppinss/utils'
 import { LucidRow, LucidModel, DateTimeColumnDecorator } from '@ioc:Adonis/Lucid/Orm'
 
 /**
- * The method to prepare the datetime column before persisting it's
+ * The method to prepare the datetime column before persisting its
  * value to the database
  */
 function prepareDateTimeColumn(value: any, attributeName: string, modelInstance: LucidRow) {

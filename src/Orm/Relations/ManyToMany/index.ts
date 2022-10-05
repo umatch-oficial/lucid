@@ -21,7 +21,7 @@ import { ManyToManyQueryClient } from './QueryClient'
 import { ensureRelationIsBooted, getValue } from '../../../utils'
 
 /**
- * Manages loading and persisting many to many relationship
+ * Manages loading and persisting many-to-many relationship
  */
 export class ManyToMany implements ManyToManyRelationContract<LucidModel, LucidModel> {
   public type = 'manyToMany' as const

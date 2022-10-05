@@ -23,7 +23,7 @@ import {
 import { BaseRelation } from './Base'
 
 /**
- * Many to many factory relation
+ * Many-to-many factory relation
  */
 export class ManyToMany extends BaseRelation implements FactoryRelationContract {
   private attributesForPivotTable: ModelObject | ModelObject[] = {}

@@ -95,8 +95,8 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   private scopesWrapper: ModelScopes | undefined = undefined
 
   /**
-   * Control whether or not to wrap adapter result to model
-   * instances or not
+   * Control whether to wrap adapter result to model
+   * instances
    */
   protected wrapResultsToModelInstances: boolean = true
 
@@ -107,7 +107,7 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   protected customReporterData: any
 
   /**
-   * Control whether to debug the query or not. The initial
+   * Control whether to debug the query. The initial
    * value is inherited from the query client
    */
   protected debugQueries: boolean = this.client.debug
@@ -128,7 +128,7 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   }
 
   /**
-   * Whether or not query is a subquery for `.where` callback
+   * Whether the query is a subquery for `.where` callback
    */
   public isChildQuery = false
 
@@ -223,7 +223,7 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   }
 
   /**
-   * Defines sub query for checking the existance of a relationship
+   * Defines sub query for checking the existence of a relationship
    */
   private addWhereHas(
     relationName: any,
@@ -528,7 +528,7 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   }
 
   /**
-   * Get count of a relationship along side the main query results
+   * Get count of a relationship alongside the main query results
    */
   public withCount(relationName: any, userCallback?: any): this {
     this.withAggregate(relationName, (subQuery: RelationQueryBuilderContract<any, any>) => {

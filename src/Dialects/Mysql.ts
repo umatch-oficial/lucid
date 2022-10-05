@@ -148,7 +148,7 @@ export class MysqlDialect implements DialectContract {
 
   /**
    * Attempts to add advisory lock to the database and
-   * returns it's status.
+   * returns its status.
    */
   public async getAdvisoryLock(key: string, timeout: number = 0): Promise<boolean> {
     const response = await this.client.rawQuery(

@@ -94,7 +94,7 @@ export class HasManyQueryBuilder
     this.appliedConstraints = true
 
     /**
-     * Eager query contraints
+     * Eager query constraints
      */
     if (Array.isArray(this.parent)) {
       this.wrapExisting().whereIn(
@@ -116,7 +116,7 @@ export class HasManyQueryBuilder
   }
 
   /**
-   * Same as standard model query builder paginate method. But ensures that
+   * Same as standard model query builder paginate method, but ensures that
    * it is not invoked during eagerloading
    */
   public paginate(page: number, perPage: number = 20) {

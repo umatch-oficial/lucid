@@ -16,7 +16,7 @@ import { PivotHelpers } from './PivotHelpers'
 import { BaseSubQueryBuilder } from '../Base/SubQueryBuilder'
 
 /**
- * Exposes the API to construct sub queries for a many to many relationships
+ * Exposes the API to construct sub queries for a many-to-many relationships
  */
 export class ManyToManySubQueryBuilder
   extends BaseSubQueryBuilder
@@ -34,7 +34,7 @@ export class ManyToManySubQueryBuilder
   private relatedTable = this.relation.relatedModel().table
 
   /**
-   * Whether or not the constraints has been applied
+   * Whether the constraints have been applied
    */
   protected appliedConstraints: boolean = false
 

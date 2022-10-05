@@ -158,7 +158,7 @@ declare module '@ioc:Adonis/Lucid/Factory' {
     merge(attributes: any): this
 
     /**
-     * Define custom pivot attributes for many to many
+     * Define custom pivot attributes for many-to-many
      * relationship
      */
     pivotAttributes?(attributes: ModelObject | ModelObject[]): this
@@ -230,9 +230,9 @@ declare module '@ioc:Adonis/Lucid/Factory' {
     ): this
 
     /**
-     * Define pivot attributes when persisting a many to many
+     * Define pivot attributes when persisting a many-to-many
      * relationship. Results in a noop, when not called
-     * for a many to many relationship
+     * for a many-to-many relationship
      */
     pivotAttributes(attributes: ModelObject | ModelObject[]): this
 
@@ -281,7 +281,7 @@ declare module '@ioc:Adonis/Lucid/Factory' {
     make(): Promise<InstanceType<FactoryModel['model']>>
 
     /**
-     * Create model instance and stub out the persistance
+     * Create model instance and stub out the persistence
      * mechanism
      */
     makeStubbed(): Promise<InstanceType<FactoryModel['model']>>
@@ -299,7 +299,7 @@ declare module '@ioc:Adonis/Lucid/Factory' {
 
     /**
      * Create one or more model instances and stub
-     * out the persistance mechanism.
+     * out the persistence mechanism.
      */
     makeStubbedMany(count: number): Promise<InstanceType<FactoryModel['model']>[]>
 
@@ -311,7 +311,7 @@ declare module '@ioc:Adonis/Lucid/Factory' {
 
   /**
    * Query contract that initiates the factory builder. Since the factory builder
-   * API surface is small, we also proxy all of it's methods for a nicer DX
+   * API surface is small, we also proxy all of its methods for a nicer DX
    */
   export interface FactoryBuilderQueryContract<
     FactoryModel extends FactoryModelContract<LucidModel>

@@ -29,7 +29,7 @@ export class LazyLoadAggregates<Model extends LucidRow>
     const Model = this.model.constructor as LucidModel
 
     /**
-     * The "refresh" query has the where clause already assigned
+     * The "refresh" query already has the where clause assigned
      */
     this.query = this.model.$getQueryFor('refresh', Model.$adapter.modelClient(this.model))
 

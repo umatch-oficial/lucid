@@ -59,7 +59,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Options accepted by many to many relationship
+   * Options accepted by many-to-many relationship
    */
   export type ManyToManyRelationOptions<Related extends ModelRelations> = {
     pivotTable?: string
@@ -118,7 +118,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   ) => TypedDecorator<BelongsTo<RelatedModel>>
 
   /**
-   * Decorator signature to define many to many relationship
+   * Decorator signature to define many-to-many relationship
    */
   export type ManyToManyDecorator = <RelatedModel extends LucidModel>(
     model: () => RelatedModel,
@@ -177,7 +177,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Opaque type for has belongs to relationship
+   * Opaque type for belongs to relationship
    */
   export type BelongsTo<
     RelatedModel extends LucidModel,
@@ -195,7 +195,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Opaque type for many to many relationship
+   * Opaque type for many-to-many relationship
    */
   export type ManyToMany<
     RelatedModel extends LucidModel,
@@ -213,7 +213,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Opaque type for many to many relationship
+   * Opaque type for has many through relationship
    */
   export type HasManyThrough<
     RelatedModel extends LucidModel,
@@ -231,7 +231,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * These exists on the models directly as a relationship. The idea
+   * These exist on the models directly as a relationship. The idea
    * is to distinguish relationship properties from other model
    * properties.
    */
@@ -323,9 +323,9 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): HasOneClientContract<this, RelatedModel>
 
     /**
-     * Hydrates related model attributes for persistance
+     * Hydrates related model attributes for persistence
      */
-    hydrateForPersistance(parent: LucidRow, values: ModelObject | LucidRow): void
+    hydrateForPersistence(parent: LucidRow, values: ModelObject | LucidRow): void
   }
 
   /**
@@ -374,9 +374,9 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): HasManyClientContract<this, RelatedModel>
 
     /**
-     * Hydrates related model attributes for persistance
+     * Hydrates related model attributes for persistence
      */
-    hydrateForPersistance(parent: LucidRow, values: ModelObject | LucidRow): void
+    hydrateForPersistence(parent: LucidRow, values: ModelObject | LucidRow): void
   }
 
   /**
@@ -421,13 +421,13 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     ): BelongsToClientContract<this, RelatedModel>
 
     /**
-     * Hydrates parent model attributes for persistance
+     * Hydrates parent model attributes for persistence
      */
-    hydrateForPersistance(parent: LucidRow, values: ModelObject | LucidRow): void
+    hydrateForPersistence(parent: LucidRow, values: ModelObject | LucidRow): void
   }
 
   /**
-   * Many to many relationship interface
+   * Many-to-many relationship interface
    */
   export interface ManyToManyRelationContract<
     ParentModel extends LucidModel,
@@ -675,7 +675,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Query client for many to many relationship.
+   * Query client for many-to-many relationship.
    */
   export interface ManyToManyClientContract<
     Relation extends RelationshipsContract,
@@ -778,7 +778,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    */
 
   /**
-   * Interface with query builder options for the many to many pivot
+   * Interface with query builder options for the many-to-many pivot
    * table
    */
   export interface PivotQueryBuilderContract {
@@ -878,7 +878,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * Shape of many to many query builder. It has few methods over the standard
+   * Shape of many-to-many query builder. It has few methods over the standard
    * model query builder
    */
   export interface ManyToManyQueryBuilderContract<Related extends LucidModel, Result>
@@ -944,7 +944,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   }
 
   /**
-   * SubQuery builder for many to many relationship
+   * SubQuery builder for many-to-many relationship
    */
   export interface ManyToManySubQueryBuilderContract<Related extends LucidModel>
     extends RelationSubQueryBuilderContract<Related>,

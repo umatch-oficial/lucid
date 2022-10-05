@@ -49,7 +49,7 @@ export const proxyHandler = {
 
     /**
      * Set value as an attribute when column is defined and
-     * their isn't any setter for it.
+     * there isn't any setter for it.
      */
     if (column && !column.hasSetter) {
       target.$setAttribute(key, value)
@@ -74,7 +74,7 @@ export const proxyHandler = {
     const column = Model.$getColumn(key)
 
     /**
-     * Set the attribute along side defining the property
+     * Set the attribute alongside defining the property
      */
     if (column && !column.hasSetter && value.value !== undefined) {
       target.$setAttribute(key, value.value)

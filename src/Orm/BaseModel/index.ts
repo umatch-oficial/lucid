@@ -101,7 +101,7 @@ export class BaseModel implements LucidRow {
   public static primaryKey: string
 
   /**
-   * Whether or not the model has been booted. Booting the model initializes it's
+   * Whether the model has been booted. Booting the model initializes its
    * static properties. Base models must not be initialized.
    */
   public static booted: boolean
@@ -302,7 +302,7 @@ export class BaseModel implements LucidRow {
     }
 
     /**
-     * Set column as the primary column, when `primary` is to true
+     * Set column as the primary column, when `primary` is true
      */
     if (column.isPrimary) {
       this.primaryKey = name
@@ -396,7 +396,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Register many to many relationship
+   * Register many-to-many relationship
    */
   protected static $addManyToMany(
     name: string,
@@ -407,7 +407,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Register many to many relationship
+   * Register many-to-many relationship
    */
   protected static $addHasManyThrough(
     name: string,
@@ -456,7 +456,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Find if some property is marked as a relation or not
+   * Find whether some property is marked as a relation
    */
   public static $hasRelation(name: any): boolean {
     return this.$relationsDefinitions.has(name)
@@ -836,7 +836,7 @@ export class BaseModel implements LucidRow {
     const existingRows = await query
 
     /**
-     * Return existing rows as it is and create a model instance for missing one's
+     * Return existing rows as it is and create a model instance for missing ones
      */
     return this.newUpIfMissing(
       payload,
@@ -849,7 +849,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Find existing rows or create missing one's. One database call per insert
+   * Find existing rows or create missing ones. One database call per insert
    * is invoked, so that each insert goes through the lifecycle of model
    * hooks.
    */
@@ -890,15 +890,15 @@ export class BaseModel implements LucidRow {
     )
 
     /**
-     * Perist inside db inside a transaction
+     * Persist inside db inside a transaction
      */
     await managedTransaction(query.client, async (trx) => {
       for (let row of rows) {
         /**
          * If transaction `client` was passed, then the row will have
-         * the `trx` already set. But since, the trx of row will be
+         * the `trx` already set. However, since the trx of row will be
          * same as the `trx` passed to this callback, we can safely
-         * re-set it.
+         * reset it.
          */
         row.$trx = trx
         if (!row.$isPersisted) {
@@ -911,7 +911,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Update existing rows or create missing one's. One database call per insert
+   * Update existing rows or create missing ones. One database call per insert
    * is invoked, so that each insert and update goes through the lifecycle
    * of model hooks.
    */
@@ -994,7 +994,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * The transaction listener listens for the `commit` and `rollback` events and
-   * cleansup the `$trx` reference
+   * cleans up the `$trx` reference
    */
   private transactionListener = function listener() {
     this.modelTrx = undefined
@@ -1002,7 +1002,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * When `fill` method is called, then we may have a situation where it
-   * removed the values which exists in `original` and hence the dirty
+   * removed the values which exist in `original` and hence the dirty
    * diff has to do a negative diff as well
    */
   private fillInvoked: boolean = false
@@ -1018,9 +1018,9 @@ export class BaseModel implements LucidRow {
   private forceUpdate: boolean = false
 
   /**
-   * Raises exception when mutations are performed on a delete model
+   * Raises exception when mutations are performed on a deleted model
    */
-  private ensureIsntDeleted() {
+  private ensureIsNotDeleted() {
     if (this.$isDeleted) {
       throw new Exception('Cannot mutate delete model instance', 500, 'E_MODEL_DELETED')
     }
@@ -1161,7 +1161,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * Extras are dynamic properties set on the model instance, which
-   * are not serialized and neither casted for adapter calls.
+   * are not serialized and neither cast for adapter calls.
    *
    * This is helpful when adapter wants to load some extra data conditionally
    * and that data must not be persisted back the adapter.
@@ -1170,10 +1170,10 @@ export class BaseModel implements LucidRow {
 
   /**
    * Sideloaded are dynamic properties set on the model instance, which
-   * are not serialized and neither casted for adapter calls.
+   * are not serialized and neither cast for adapter calls.
    *
-   * This is helpful when you want to add dynamic meta data to the model
-   * and it's children as well.
+   * This is helpful when you want to add dynamic metadata to the model
+   * and its children as well.
    *
    * The difference between [[extras]] and [[sideloaded]] is:
    *
@@ -1232,7 +1232,7 @@ export class BaseModel implements LucidRow {
     const processedKeys: string[] = []
 
     /**
-     * Do not compute diff, when model has never been persisted
+     * Do not compute diff when model has never been persisted
      */
     if (!this.$isPersisted) {
       return this.$attributes
@@ -1264,7 +1264,7 @@ export class BaseModel implements LucidRow {
 
     /**
      * Find negative diff if fill was invoked, since we may have removed values
-     * that exists in originals
+     * that exist in originals
      */
     if (this.fillInvoked) {
       Object.keys(this.$original)
@@ -1278,7 +1278,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Finding if model is dirty with changes or not
+   * Find whether model is dirty with changes
    */
   public get $isDirty() {
     return Object.keys(this.$dirty).length > 0
@@ -1376,7 +1376,7 @@ export class BaseModel implements LucidRow {
    * Set attribute
    */
   public $setAttribute(key: string, value: any) {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
     this.$attributes[key] = value
   }
 
@@ -1388,9 +1388,9 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Returns the attribute value from the cache which was resolved by
-   * the mutated by a getter. This is done to avoid re-mutating
-   * the same attribute value over and over again.
+   * Returns the attribute value from the cache which was mutated by a
+   * getter. This is done to avoid re-mutating the same attribute value
+   * over and over.
    */
   public $getAttributeFromCache(key: string, callback: CacheNode['getter']): any {
     const original = this.$getAttribute(key)
@@ -1433,7 +1433,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * A boolean to know if relationship has been preloaded or not
+   * A boolean to know whether a relationship has been preloaded
    */
   public $hasRelated(key: any): boolean {
     return this.$preloaded[key] !== undefined
@@ -1441,7 +1441,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * Sets the related data on the model instance. The method internally handles
-   * `one to one` or `many` relations
+   * `one-to-one` or `many` relations
    */
   public $setRelated(key: any, models: LucidRow | LucidRow[]) {
     const Model = this.constructor as typeof BaseModel
@@ -1492,7 +1492,7 @@ export class BaseModel implements LucidRow {
     }
 
     /**
-     * Dis-allow setting multiple model instances for a one to one relationship
+     * Dis-allow setting multiple model instances for a one-to-one relationship
      */
     if (Array.isArray(models)) {
       throw new Error(
@@ -1623,7 +1623,7 @@ export class BaseModel implements LucidRow {
 
         /**
          * Resolve the attribute name from the column names. Since people
-         * usaully define the column names directly as well by
+         * usually define the column names directly as well by
          * accepting them directly from the API.
          */
         const attributeName = Model.$keys.columnsToAttributes.get(key)
@@ -1678,7 +1678,7 @@ export class BaseModel implements LucidRow {
    * Preloads one or more relationships for the current model
    */
   public async load(relationName: any, callback?: any) {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
 
     if (!this.$isPersisted) {
       throw new Exception('Cannot lazy load relationship for an unpersisted model instance')
@@ -1714,7 +1714,7 @@ export class BaseModel implements LucidRow {
    * Lazy load the relationship aggregate value
    */
   public loadAggregate(relationName: any, callback?: any) {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
 
     if (!this.$isPersisted) {
       throw new Exception(
@@ -1729,7 +1729,7 @@ export class BaseModel implements LucidRow {
    * Lazy load the relationship count value
    */
   public loadCount(relationName: any, callback?: any) {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
 
     if (!this.$isPersisted) {
       throw new Exception(
@@ -1744,11 +1744,11 @@ export class BaseModel implements LucidRow {
    * Perform save on the model instance to commit mutations.
    */
   public async save(): Promise<this> {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
     const Model = this.constructor as typeof BaseModel
 
     /**
-     * Persit the model when it's not persisted already
+     * Persist the model when it's not already persisted
      */
     if (!this.$isPersisted) {
       await Model.$hooks.exec('before', 'create', this)
@@ -1766,8 +1766,8 @@ export class BaseModel implements LucidRow {
     }
 
     /**
-     * Call hooks before hand, so that they have the chance
-     * to make mutations that produces one or more `$dirty`
+     * Call hooks beforehand, so that they have the chance
+     * to make mutations that produce one or more `$dirty`
      * fields.
      */
     await Model.$hooks.exec('before', 'update', this)
@@ -1803,7 +1803,7 @@ export class BaseModel implements LucidRow {
    * Perform delete by issuing a delete request on the adapter
    */
   public async delete() {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
     const Model = this.constructor as typeof BaseModel
 
     await Model.$hooks.exec('before', 'delete', this)
@@ -1853,7 +1853,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * Serializes relationships to a plain object. When `raw=true`, it will
-   * recurisvely serialize the relationships as well.
+   * recursively serialize the relationships as well.
    */
   public serializeRelations(
     cherryPick?: CherryPick['relations'],
@@ -1882,7 +1882,7 @@ export class BaseModel implements LucidRow {
       }
 
       /**
-       * Always make sure we passing a valid object or undefined
+       * Always make sure we are passing a valid object or undefined
        * to the relationships
        */
       const relationOptions = cherryPick ? cherryPick[relation.serializeAs] : undefined
@@ -1897,7 +1897,7 @@ export class BaseModel implements LucidRow {
   }
 
   /**
-   * Converting model to it's JSON representation
+   * Converting model to its JSON representation
    */
   public serialize(cherryPick?: CherryPick) {
     let extras: any = null
@@ -1952,7 +1952,7 @@ export class BaseModel implements LucidRow {
 
   /**
    * Returns the serialize method output. However, any model can overwrite
-   * it to define it's custom serialize output
+   * it to define its custom serialize output
    */
   public toJSON() {
     return this.serialize()
@@ -2013,7 +2013,7 @@ export class BaseModel implements LucidRow {
    * Reload/Refresh the model instance
    */
   public async refresh() {
-    this.ensureIsntDeleted()
+    this.ensureIsNotDeleted()
 
     /**
      * Noop when model instance is not persisted

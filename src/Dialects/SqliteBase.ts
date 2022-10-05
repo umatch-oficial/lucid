@@ -111,7 +111,7 @@ export abstract class BaseSqliteDialect implements DialectContract {
 
   /**
    * Attempts to add advisory lock to the database and
-   * returns it's status.
+   * returns its status.
    */
   public getAdvisoryLock(): Promise<boolean> {
     throw new Error("Sqlite doesn't support advisory locks")

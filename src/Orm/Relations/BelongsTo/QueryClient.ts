@@ -75,7 +75,7 @@ export class BelongsToQueryClient implements BelongsToClientContract<BelongsTo, 
       related.$trx = trx
       await related.save()
 
-      this.relation.hydrateForPersistance(this.parent, related)
+      this.relation.hydrateForPersistence(this.parent, related)
       this.parent.$trx = trx
       await this.parent.save()
     })

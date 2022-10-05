@@ -38,7 +38,7 @@ export class TransactionClient extends EventEmitter implements TransactionClient
   public isTransaction: true = true
 
   /**
-   * Transactions are always in write mode, since they always needs
+   * Transactions are always in write mode, since they always need
    * the primary connection
    */
   public mode: 'dual' = 'dual'
@@ -68,7 +68,7 @@ export class TransactionClient extends EventEmitter implements TransactionClient
   }
 
   /**
-   * Whether or not transaction has been completed
+   * Whether the transaction has been completed
    */
   public get isCompleted() {
     return this.knexClient.isCompleted()
@@ -90,7 +90,7 @@ export class TransactionClient extends EventEmitter implements TransactionClient
   }
 
   /**
-   * Returns the write client. Which is just a single client in case
+   * Returns the Write client, which is just a single client in case
    * of transactions
    */
   public getWriteClient() {
@@ -242,7 +242,7 @@ export class TransactionClient extends EventEmitter implements TransactionClient
     transaction.profiler = this.profiler?.create('trx:begin', { state: 'begin' })
 
     /**
-     * Self managed transaction
+     * Self-managed transaction
      */
     if (typeof callback === 'function') {
       try {

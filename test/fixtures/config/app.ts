@@ -77,7 +77,7 @@ export const http = {
 	| Generating Etag
 	|--------------------------------------------------------------------------
 	|
-	| Whether or not to generate an etag for every response.
+	| Whether to generate an etag for every response.
 	|
 	*/
   etag: false,

@@ -46,14 +46,14 @@ export class PivotHelpers {
    * Adds a where pivot condition to the query
    */
   public wherePivot(
-    varition: 'or' | 'and' | 'not' | 'orNot',
+    variation: 'or' | 'and' | 'not' | 'orNot',
     key: any,
     operator?: any,
     value?: any
   ) {
     let method: string = 'where'
 
-    switch (varition) {
+    switch (variation) {
       case 'or':
         method = 'orWhere'
         break
@@ -76,10 +76,10 @@ export class PivotHelpers {
   /**
    * Adds a where pivot condition to the query
    */
-  public whereNullPivot(varition: 'or' | 'and' | 'not' | 'orNot', key: string) {
+  public whereNullPivot(variation: 'or' | 'and' | 'not' | 'orNot', key: string) {
     let method: string = 'whereNull'
 
-    switch (varition) {
+    switch (variation) {
       case 'or':
         method = 'orWhereNull'
         break
@@ -96,10 +96,10 @@ export class PivotHelpers {
   /**
    * Adds a where pivot condition to the query
    */
-  public whereInPivot(varition: 'or' | 'and' | 'not' | 'orNot', key: any, value?: any) {
+  public whereInPivot(variation: 'or' | 'and' | 'not' | 'orNot', key: any, value?: any) {
     let method: string = 'whereIn'
 
-    switch (varition) {
+    switch (variation) {
       case 'or':
         method = 'orWhereIn'
         break

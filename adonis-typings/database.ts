@@ -101,7 +101,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     profiler?: ProfilerRowContract | ProfilerContract
 
     /**
-     * Tells if client is a transaction client or not
+     * Tells whether client is a transaction client
      */
     readonly isTransaction: boolean
 
@@ -122,7 +122,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     readonly connectionName: string
 
     /**
-     * Is debug enabled on the connnection or not. Also opens up the API to
+     * Is debug enabled on the connnection. Also opens up the API to
      * disable debug for a given client
      */
     debug: boolean
@@ -262,7 +262,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     profiler?: ProfilerRowContract
 
     /**
-     * Is transaction completed or not
+     * Whether transaction is completed
      */
     isCompleted: boolean
 
@@ -580,7 +580,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
   export interface ConnectionManagerContract {
     /**
      * List of registered connection. You must check the connection state
-     * to understand, if it is connected or not
+     * to understand whether it is connected
      */
     connections: Map<string, ConnectionNode>
 
@@ -602,7 +602,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     get(connectionName: string): ConnectionNode | undefined
 
     /**
-     * Find if a connection name is managed by the manager or not
+     * Find whether a connection name is managed by the manager
      */
     has(connectionName: string): boolean
 
@@ -613,7 +613,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     patch(connectionName: string, config: ConnectionConfig): void
 
     /**
-     * Find if a managed connection is instantiated or not
+     * Find whether a managed connection is instantiated
      */
     isConnected(connectionName: string): boolean
 
@@ -674,7 +674,7 @@ declare module '@ioc:Adonis/Lucid/Database' {
     readonly name: string
 
     /**
-     * Find if connection is ready or not
+     * Find whether connection is ready
      */
     readonly ready: boolean
 
