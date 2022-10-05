@@ -25,6 +25,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     TransactionClientContract,
     ExecutableQueryBuilderContract,
   } from '@ioc:Adonis/Lucid/Database'
+  import { CamelToSnakeCaseKeys, Dictionary } from '@umatch/utils'
 
   /**
    * ------------------------------------------------------
@@ -71,6 +72,15 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     property: TKey
   ) => void
 
+  // Lucid serializes DateTimes to strings
+  type DateTimeToString<T extends { [_: PropertyKey]: any }> = {
+    [K in keyof T]: T[K] extends DateTime
+      ? string
+      : T[K] extends DateTime | null
+      ? string | null
+      : T[K]
+  }
+
   /**
    * A complex type that filters out functions and relationships from the
    * model attributes and consider all other properties as database
@@ -88,6 +98,30 @@ declare module '@ioc:Adonis/Lucid/Orm' {
         }[keyof Model]]: Model[Filtered]
       }
     : Model['$columns']
+
+  /**
+   * Returns one or an array of instance attributes based
+   * on the relationship type.
+   */
+  type RelationModelInstanceAttributes<Relation extends ModelRelations> =
+    Relation['__opaque_type'] extends 'hasOne' | 'belongsTo'
+      ? ModelAttributesJSON<Relation['instance']> | null
+      : ModelAttributesJSON<Relation['instance']>[] | null
+
+  type ModelRelationsAttributes<Model extends LucidRow> = DateTimeToString<{
+    [Key in keyof Model]: Model[Key] extends ModelRelations
+      ? RelationModelInstanceAttributes<Model[Key]>
+      : never
+  }>
+
+  type ModelAttributesJSON<Model extends LucidRow> = DateTimeToString<
+    CamelToSnakeCaseKeys<ModelAttributes<Model> & Dictionary>
+  >
+  /**
+   * A type for the output of toObject, serialize and toJSON.
+   */
+  type ModelJSON<Model extends LucidRow> = ModelAttributesJSON<Model> &
+    ModelRelationsAttributes<Model>
 
   /**
    * Extract the query scopes of a model
@@ -118,10 +152,10 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    * Shape for cherry picking fields
    */
   export type CherryPickFields =
-    | string[]
+    | readonly string[]
     | {
-        pick?: string[]
-        omit?: string[]
+        pick?: readonly string[]
+        omit?: readonly string[]
       }
 
   /**
@@ -306,8 +340,8 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    */
   export interface ModelPaginatorContract<Result extends LucidRow>
     extends Omit<SimplePaginatorContract<Result>, 'toJSON'> {
-    serialize(cherryPick?: CherryPick): { meta: any; data: ModelObject[] }
-    toJSON(): { meta: any; data: ModelObject[] }
+    serialize(cherryPick?: CherryPick): { meta: any; data: ModelJSON<Result>[] }
+    toJSON(): { meta: any; data: ModelJSON<Result>[] }
   }
 
   /**
@@ -667,20 +701,24 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     serializeRelations(cherryPick?: CherryPick['relations'], raw?: boolean): ModelObject
 
     /**
-     * Serialize model to a plain object
+     *
+     * Serializes model to a plain object. Allows the cherry-picking of fields to be
+     * shown or hidden
      */
-    serialize(cherryPick?: CherryPick): ModelObject
+    serialize<T extends CherryPick>(
+      cherryPick?: T
+    ): T extends { fields: (infer K)[] } ? Pick<ModelJSON<this>, K & keyof this> : ModelJSON<this>
 
     /**
      * Converts model to an object. It just returns the properties
      * of the model, along with preloaded relationships
      */
-    toObject(): ModelObject
+    toObject(): ModelJSON<this>
 
     /**
-     * Serialize everything
+     * Serializes model to a plain object
      */
-    toJSON(): ModelObject
+    toJSON(): ModelJSON<this>
 
     /**
      * Returns related model for a given relationship
