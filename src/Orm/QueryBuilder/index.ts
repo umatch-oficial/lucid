@@ -36,6 +36,7 @@ import { ModelPaginator } from '../Paginator'
 import { QueryRunner } from '../../QueryRunner'
 import { Chainable } from '../../Database/QueryBuilder/Chainable'
 import { SimplePaginator } from '../../Database/Paginator/SimplePaginator'
+import { hasOwnProperty } from '@umatch/utils/lib/object'
 
 /**
  * A wrapper to invoke scope methods on the query builder
@@ -475,7 +476,10 @@ export class ModelQueryBuilder extends Chainable implements ModelQueryBuilderCon
   public async firstOrFail(): Promise<any> {
     const row = await this.first()
     if (!row) {
-      throw new Exception('Row not found', 404, 'E_ROW_NOT_FOUND')
+      const related = hasOwnProperty(this, 'parent')
+        ? ` related to ${(this.parent as { new (): any }).constructor.name}`
+        : ''
+      throw new Exception(`Could not find ${this.model.name}${related}`, 404, 'E_ROW_NOT_FOUND')
     }
 
     return row
