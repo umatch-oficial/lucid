@@ -55,7 +55,7 @@ export class HasManyThroughQueryBuilder
    * Prefixes the through table name to a column
    */
   private prefixThroughTable(column: string) {
-    return column.includes('.') ? column : `${this.throughTable}.${column}`
+    return column.includes('.') ? column : `through_${this.throughTable}.${column}`
   }
 
   /**
@@ -175,7 +175,7 @@ export class HasManyThroughQueryBuilder
      * Inner join
      */
     this.innerJoin(
-      this.throughTable,
+      `${this.throughTable} as through_${this.throughTable}`,
       this.prefixThroughTable(this.relation.throughLocalKeyColumnName),
       this.prefixRelatedTable(this.relation.throughForeignKeyColumnName)
     )
