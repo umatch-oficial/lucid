@@ -211,6 +211,210 @@ export class ManyToManyQueryBuilder
     return this
   }
 
+  public where(key: any, operator?: any, value?: any): this {
+    return super.where(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public orWhere(key: any, operator?: any, value?: any): this {
+    return super.orWhere(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public andWhere(key: any, operator?: any, value?: any): this {
+    return super.andWhere(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public whereNot(key: any, operator?: any, value?: any): this {
+    return super.whereNot(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public orWhereNot(key: any, operator?: any, value?: any): this {
+    return super.orWhereNot(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public andWhereNot(key: any, operator?: any, value?: any): this {
+    return super.andWhereNot(this.prefixRelatedTable(key), operator, value)
+  }
+
+  public whereIn(key: any, value: any): this {
+    return super.whereIn(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereIn(key: any, value: any): this {
+    return super.orWhereIn(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereIn(key: any, value: any): this {
+    return super.andWhereIn(this.prefixRelatedTable(key), value)
+  }
+
+  public whereNotIn(key: any, value: any): this {
+    return super.whereNotIn(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereNotIn(key: any, value: any): this {
+    return super.orWhereNotIn(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereNotIn(key: any, value: any): this {
+    return super.andWhereNotIn(this.prefixRelatedTable(key), value)
+  }
+
+  public whereNull(key: any): this {
+    return super.whereNull(this.prefixRelatedTable(key))
+  }
+
+  public orWhereNull(key: any): this {
+    return super.orWhereNull(this.prefixRelatedTable(key))
+  }
+
+  public andWhereNull(key: any): this {
+    return super.andWhereNull(this.prefixRelatedTable(key))
+  }
+
+  public whereNotNull(key: any): this {
+    return super.whereNotNull(this.prefixRelatedTable(key))
+  }
+
+  public orWhereNotNull(key: any): this {
+    return super.orWhereNotNull(this.prefixRelatedTable(key))
+  }
+
+  public andWhereNotNull(key: any): this {
+    return super.andWhereNotNull(this.prefixRelatedTable(key))
+  }
+
+  public whereBetween(key: any, value: [any, any]): this {
+    return super.whereBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereBetween(key: any, value: [any, any]): this {
+    return super.orWhereBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereBetween(key: any, value: [any, any]): this {
+    return super.andWhereBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public whereNotBetween(key: any, value: [any, any]): this {
+    return super.whereNotBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereNotBetween(key: any, value: [any, any]): this {
+    return super.orWhereNotBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereNotBetween(key: any, value: [any, any]): this {
+    return super.andWhereNotBetween(this.prefixRelatedTable(key), value)
+  }
+
+  public whereLike(key: any, value: any): this {
+    return super.whereLike(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereLike(key: any, value: any): this {
+    return super.orWhereLike(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereLike(key: any, value: any): this {
+    return super.andWhereLike(this.prefixRelatedTable(key), value)
+  }
+
+  public whereILike(key: any, value: any): this {
+    return super.whereILike(this.prefixRelatedTable(key), value)
+  }
+
+  public orWhereILike(key: any, value: any): this {
+    return super.orWhereILike(this.prefixRelatedTable(key), value)
+  }
+
+  public andWhereILike(key: any, value: any): this {
+    return super.andWhereILike(this.prefixRelatedTable(key), value)
+  }
+
+  public whereJson(column: string, value: any): this {
+    return super.whereJson(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereJson(column: string, value: any): this {
+    return super.orWhereJson(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereJson(column: string, value: any): this {
+    return super.andWhereJson(this.prefixRelatedTable(column), value)
+  }
+
+  public whereNotJson(column: string, value: any): this {
+    return super.whereNotJson(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereNotJson(column: string, value: any): this {
+    return super.orWhereNotJson(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereNotJson(column: string, value: any): this {
+    return super.andWhereNotJson(this.prefixRelatedTable(column), value)
+  }
+
+  public whereJsonSuperset(column: string, value: any): this {
+    return super.whereJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereJsonSuperset(column: string, value: any): this {
+    return super.orWhereJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereJsonSuperset(column: string, value: any): this {
+    return super.andWhereJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public whereNotJsonSuperset(column: string, value: any): this {
+    return super.whereNotJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereNotJsonSuperset(column: string, value: any): this {
+    return super.orWhereNotJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereNotJsonSuperset(column: string, value: any): this {
+    return super.andWhereNotJsonSuperset(this.prefixRelatedTable(column), value)
+  }
+
+  public whereJsonSubset(column: string, value: any): this {
+    return super.whereJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereJsonSubset(column: string, value: any): this {
+    return super.orWhereJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereJsonSubset(column: string, value: any): this {
+    return super.andWhereJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public whereNotJsonSubset(column: string, value: any): this {
+    return super.whereNotJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public orWhereNotJsonSubset(column: string, value: any): this {
+    return super.orWhereNotJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public andWhereNotJsonSubset(column: string, value: any): this {
+    return super.andWhereNotJsonSubset(this.prefixRelatedTable(column), value)
+  }
+
+  public whereJsonPath(column: string, jsonPath: string, operator: any, value?: any): this {
+    return super.whereJsonPath(this.prefixRelatedTable(column), jsonPath, operator, value)
+  }
+
+  public orWhereJsonPath(column: string, jsonPath: string, operator: any, value?: any): this {
+    return super.orWhereJsonPath(this.prefixRelatedTable(column), jsonPath, operator, value)
+  }
+
+  public andWhereJsonPath(column: string, jsonPath: string, operator: any, value?: any): this {
+    return super.andWhereJsonPath(this.prefixRelatedTable(column), jsonPath, operator, value)
+  }
+
   /**
    * Add where clause with pivot table prefix
    */
