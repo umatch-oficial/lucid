@@ -6214,7 +6214,7 @@ test.group('Model | ManyToMany | sync', (group) => {
     await resetTables()
   })
 
-  test("sync ids by dropping only the missing ones", async ({ assert }) => {
+  test('sync ids by dropping only the missing ones', async ({ assert }) => {
     class Skill extends BaseModel {
       @column({ isPrimary: true })
       public id: number
