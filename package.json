@@ -1,6 +1,6 @@
 {
   "name": "@umatch/lucid",
-  "version": "18.1.1",
+  "version": "18.1.2",
   "description": "Fork of @adonisjs/lucid with minor functional changes and better types.",
   "main": "build/providers/DatabaseProvider.js",
   "files": [
