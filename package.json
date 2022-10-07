@@ -25,7 +25,7 @@
     "test:docker": "npm run test:mysql && npm run test:mysql_legacy && npm run test:pg && npm run test:mssql",
     "lint": "eslint . --ext=.ts",
     "clean": "del-cli build",
-    "compile": "npm run lint && npm run clean && tsc && npm run copyfiles",
+    "compile": "npm run lint && npm run clean && tsc ; npm run copyfiles",
     "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build",
     "build": "npm run compile",
     "commit": "git-cz",
