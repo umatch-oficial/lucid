@@ -204,8 +204,8 @@ export function normalizeCherryPickObject(fields: CherryPickFields) {
   }
 
   return {
-    pick: fields.pick,
-    omit: fields.omit,
+    pick: (fields as { pick: readonly string[] }).pick,
+    omit: (fields as { omit: readonly string[] }).omit,
   }
 }
 
