@@ -25,7 +25,7 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     TransactionClientContract,
     ExecutableQueryBuilderContract,
   } from '@ioc:Adonis/Lucid/Database'
-  import { CamelToSnakeCaseKeys, Dictionary } from '@umatch/utils'
+  import { CamelToSnakeCase } from '@umatch/utils'
 
   /**
    * ------------------------------------------------------
@@ -72,14 +72,14 @@ declare module '@ioc:Adonis/Lucid/Orm' {
     property: TKey
   ) => void
 
-  // Lucid serializes DateTimes to strings
-  type DateTimeToString<T extends { [_: PropertyKey]: any }> = {
-    [K in keyof T]: T[K] extends DateTime
-      ? string
-      : T[K] extends DateTime | null
-      ? string | null
-      : T[K]
-  }
+  /**
+   * Lucid serializes DateTimes to strings
+   */
+  type DateTimeToString<T> = T extends DateTime
+    ? string
+    : T extends DateTime | null
+    ? string | null
+    : T
 
   /**
    * A complex type that filters out functions and relationships from the
@@ -103,25 +103,51 @@ declare module '@ioc:Adonis/Lucid/Orm' {
    * Returns one or an array of instance attributes based
    * on the relationship type.
    */
-  type RelationModelInstanceAttributes<Relation extends ModelRelations> =
-    Relation['__opaque_type'] extends 'hasOne' | 'belongsTo'
-      ? ModelAttributesJSON<Relation['instance']> | null
-      : ModelAttributesJSON<Relation['instance']>[] | null
-
-  type ModelRelationsAttributes<Model extends LucidRow> = DateTimeToString<{
-    [Key in keyof Model]: Model[Key] extends ModelRelations
-      ? RelationModelInstanceAttributes<Model[Key]>
-      : never
-  }>
-
-  type ModelAttributesJSON<Model extends LucidRow> = DateTimeToString<
-    CamelToSnakeCaseKeys<ModelAttributes<Model> & Dictionary>
-  >
+  type RelatedModelJSON<Relation extends ModelRelations> = Relation['__opaque_type'] extends
+    | 'hasOne'
+    | 'belongsTo'
+    ? ModelJSON<Relation['instance']> | null
+    : (ModelJSON<Relation['instance']> | null)[]
   /**
-   * A type for the output of toObject, serialize and toJSON.
+   * Only properties defined with @column()
    */
-  type ModelJSON<Model extends LucidRow> = ModelAttributesJSON<Model> &
-    ModelRelationsAttributes<Model>
+  type ModelColumns<Model extends LucidRow> = {
+    [K in keyof Model]: K extends keyof LucidRow | 'serializeExtras'
+      ? never
+      : Model[K] extends Function | ModelRelationTypes
+      ? never
+      : K
+  }
+  /**
+   * Properties defined with @column() and also relations
+   */
+  type ModelColumnsAndRelations<Model extends LucidRow> = {
+    [K in keyof Model]: K extends keyof LucidRow | 'serializeExtras'
+      ? never
+      : Model[K] extends Function
+      ? never
+      : K
+  }
+  /**
+   * A type for the output of serialize, toObject and toJSON.
+   */
+  type ModelJSON<
+    Model extends LucidRow,
+    Relations extends ExtractModelRelations<Model> | undefined = undefined
+  > = Relations extends undefined
+    ? {
+        [Filtered in ModelColumns<Model>[keyof Model] as CamelToSnakeCase<
+          Filtered & string
+        >]: DateTimeToString<Model[Filtered]>
+      }
+    : {
+        [Filtered in ModelColumnsAndRelations<Model>[keyof Model] as CamelToSnakeCase<
+          Filtered & string
+        >]: Filtered extends Relations
+          ? // @ts-ignore
+            RelatedModelJSON<Model[Filtered]>
+          : DateTimeToString<Model[Filtered]>
+      }
 
   /**
    * Extract the query scopes of a model
@@ -707,7 +733,8 @@ declare module '@ioc:Adonis/Lucid/Orm' {
      */
     serialize<T extends CherryPick>(
       cherryPick?: T
-    ): T extends { fields: (infer K)[] } ? Pick<ModelJSON<this>, K & keyof this> : ModelJSON<this>
+      // @ts-ignore
+    ): T extends { fields: infer K } ? Pick<ModelJSON<this>, K[number]> : ModelJSON<this>
 
     /**
      * Converts model to an object. It just returns the properties
