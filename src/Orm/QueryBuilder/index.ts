@@ -36,7 +36,7 @@ import { ModelPaginator } from '../Paginator'
 import { QueryRunner } from '../../QueryRunner'
 import { Chainable } from '../../Database/QueryBuilder/Chainable'
 import { SimplePaginator } from '../../Database/Paginator/SimplePaginator'
-import { hasOwnProperty } from '@umatch/utils/lib/object'
+import { hasOwnProperty } from '@umatch/utils/object'
 
 /**
  * A wrapper to invoke scope methods on the query builder
