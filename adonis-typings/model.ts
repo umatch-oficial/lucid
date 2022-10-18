@@ -119,35 +119,35 @@ declare module '@ioc:Adonis/Lucid/Orm' {
       : K
   }
   /**
-   * Properties defined with @column() and also relations
+   * Properties defined with @column() and specified relations
    */
-  type ModelColumnsAndRelations<Model extends LucidRow> = {
+  type ModelColumnsAndRelations<
+    Model extends LucidRow,
+    Relations extends ExtractModelRelations<Model> | undefined = undefined
+  > = {
     [K in keyof Model]: K extends keyof LucidRow | 'serializeExtras'
       ? never
       : Model[K] extends Function
       ? never
+      : Model[K] extends ModelRelationTypes
+      ? K extends Relations
+        ? K
+        : never
       : K
-  }
+  }[keyof Model]
   /**
    * A type for the output of serialize, toObject and toJSON.
    */
   type ModelJSON<
     Model extends LucidRow,
     Relations extends ExtractModelRelations<Model> | undefined = undefined
-  > = Relations extends undefined
-    ? {
-        [Filtered in ModelColumns<Model>[keyof Model] as CamelToSnakeCase<
-          Filtered & string
-        >]: DateTimeToString<Model[Filtered]>
-      }
-    : {
-        [Filtered in ModelColumnsAndRelations<Model>[keyof Model] as CamelToSnakeCase<
-          Filtered & string
-        >]: Filtered extends Relations
-          ? // @ts-ignore
-            RelatedModelJSON<Model[Filtered]>
-          : DateTimeToString<Model[Filtered]>
-      }
+  > = {
+    [Key in ModelColumnsAndRelations<Model, Relations> as Key extends Relations
+      ? Key
+      : CamelToSnakeCase<Key & string>]: Key extends Relations
+      ? RelatedModelJSON<Model[Key] & ModelRelations>
+      : DateTimeToString<Model[Key]>
+  }
 
   /**
    * Extract the query scopes of a model
@@ -180,8 +180,8 @@ declare module '@ioc:Adonis/Lucid/Orm' {
   export type CherryPickFields =
     | readonly string[]
     | {
-        pick?: readonly string[]
-        omit?: readonly string[]
+        pick?: string[]
+        omit?: string[]
       }
 
   /**
@@ -731,10 +731,17 @@ declare module '@ioc:Adonis/Lucid/Orm' {
      * Serializes model to a plain object. Allows the cherry-picking of fields to be
      * shown or hidden
      */
-    serialize<T extends CherryPick>(
+    serialize<
+      Relations extends ExtractModelRelations<this> | undefined = undefined,
+      T extends CherryPick = {}
+    >(
       cherryPick?: T
       // @ts-ignore
-    ): T extends { fields: infer K } ? Pick<ModelJSON<this>, K[number]> : ModelJSON<this>
+    ): T extends { fields: infer K }
+      ? K extends (keyof ModelJSON<this, Relations>)[]
+        ? Pick<ModelJSON<this, Relations>, K[number]>
+        : never
+      : ModelJSON<this, Relations>
 
     /**
      * Converts model to an object. It just returns the properties
